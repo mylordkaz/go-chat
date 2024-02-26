@@ -2,7 +2,7 @@ let socket = new WebSocket("ws://localhost:8080/ws")
 
 
 // connect to the WebSocket endpoint and listens for events
-let connect = () =>{
+export const connect = () =>{
     console.log("Attempting Connection...")
 
     socket.onopen = () => {
@@ -23,9 +23,7 @@ let connect = () =>{
 }
 
 // allows to send msg, frontend >>> backend 
-let sendMsg = (msg: string) => {
+export const sendMsg = (msg: string) => {
     console.log("sending msg:", msg)
     socket.send(msg)
 }
-
-export default {connect, sendMsg}
