@@ -1,6 +1,7 @@
 import '../chatroom.css';
 import { useEffect, useState } from "react";
 import { connect, sendMsg } from "../api";
+import { useLocation } from 'react-router-dom';
 
 
 interface Message {
@@ -12,6 +13,10 @@ interface Message {
 export default function Chatroom() {
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState<string>("")
+
+  const location = useLocation()
+  const user = new URLSearchParams(location.search).get("username") || "guest"
+
 
 
   useEffect(() => {
@@ -25,7 +30,7 @@ export default function Chatroom() {
 
     if (newMessage.trim() !== ""){
       sendMsg(newMessage)
-      setMessages([...messages, {text: newMessage, sender: "me"}])
+      setMessages([...messages, {text: newMessage, sender: user}])
       setNewMessage("")
     }
     
@@ -36,8 +41,11 @@ export default function Chatroom() {
         <div className="chat">
           <div className="chat-container">
             {messages.map((message, index) => (
-              <div className='message' key={index}>
+              <div>
+                <strong>{message.sender}</strong>
+                <div className='message' key={index}>
                 {message.text}
+                </div>
               </div>
             ))}
   
