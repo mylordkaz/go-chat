@@ -1,42 +1,77 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #000000;
+  color: white;
   text-align: center;
+  background-image: url('./assets/skytree.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  margin: 0px;
+  font-family: 'Avenir';
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.home {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    75deg,
+    rgb(20, 23, 33) 0%,
+    rgb(20, 23, 33) 50%,
+    rgba(20, 23, 33, 0.8) 60%
+  );
+  display: table-cell;
+  vertical-align: middle;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
-  padding: 2em;
+  width: 50%;
+  max-width: 350px;
+  padding: 0% 25% 0% 25%;
+  text-align: left;
 }
-
-.read-the-docs {
-  color: #888;
+.start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.start label {
+  font-size: 16px;
+  color: rgb(175, 175, 175);
+  width: 100%;
+}
+.start input {
+  background-color: #3e404b;
+  color: rgb(237, 237, 237);
+  /* font-family: 'victor'; */
+  font-size: large;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 24px 18px 12px 18px;
+  width: calc(100% - 18px - 18px);
+  margin-bottom: 12px;
+}
+.enter-btn {
+  width: 100%;
+  height: 53px;
+  color: white;
+  background-color: #411cfa;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-family: 'Avenir';
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.44s ease;
+  -webkit-transition: all 0.44s ease;
+  -moz-transition: all 0.44s ease;
+}
+.enter-btn:hover {
+  filter: brightness(145%);
+  
 }

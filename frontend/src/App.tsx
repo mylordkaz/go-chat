@@ -1,33 +1,27 @@
-
-import { useEffect } from 'react'
 import './App.css'
-import { connect, sendMsg } from "./api";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import Chatroom from './pages/Chatroom';
 
+
+let router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/chat",
+    element: <Chatroom />
+  }
+])
 
 function App() {
 
-  useEffect(() =>{
-    connect()
-
-    return () => {
-
-    }
-  }, [])
- 
-
-  const send = () => {
-    console.log("hello")
-    sendMsg("hello")
-    
-  }
 
   return (
-    <>
-    <div className='App'>
-      <button onClick={send}>Hit</button>
+    <div>
+      <RouterProvider router={router} />
     </div>
-      
-    </>
   )
 }
 
