@@ -14,7 +14,7 @@ func serveWs(w http.ResponseWriter, r *http.Request) {
 	//upgrade http conn to Ws conn
 	ws, err := websocket.Upgrade(w, r)
 	if err != nil{
-		fmt.Fprintf(w, "%+V\n", err)
+		fmt.Fprintf(w, "%+v\n", err)
 	}
 
 	// listen indefinitely for new msg coming
