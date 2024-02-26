@@ -15,8 +15,8 @@ type Client struct {
 }
 
 type Message struct {
-	Type int   		`json;"type"`
-	Body string 	`json;"body"`
+	Type int   		`json:"type"`
+	Body string 	`json:"body"`
 }
 
 // read method constently listen for new message coming through that connection

@@ -21,9 +21,11 @@ export default function Chatroom() {
 
   useEffect(() => {
     connect()
+    
 
     return () => {}
   }, [])
+  
 
   const send = (e: React.FormEvent) => {
     e.preventDefault()
