@@ -11,9 +11,11 @@
     vertical-align: middle;
   }
   .chat-container {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-end;
     gap: 20px;
     width: 50%;
     height: 50%;
@@ -29,7 +31,7 @@
     align-items: center;
     margin-bottom: 12px;
   }
-  .chat-container input {
+  .chat-container input { 
     background-color: #3e404b;
     color: rgb(237, 237, 237);
     /* font-family: 'victor'; */

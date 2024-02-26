@@ -1,7 +1,18 @@
 import '../chatroom.css';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect, sendMsg } from "../api";
+
+
+interface Message {
+  text: string
+  sender: string
+}
+
+
 export default function Chatroom() {
+  const [messages, setMessages] = useState<Message[]>([])
+  const [newMessage, setNewMessage] = useState<string>("")
+
 
   useEffect(() => {
     connect()
@@ -9,24 +20,33 @@ export default function Chatroom() {
     return () => {}
   }, [])
 
-  const send = () => {
-    console.log("hello")
-    sendMsg("hello")
+  const send = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (newMessage.trim() !== ""){
+      sendMsg(newMessage)
+      setMessages([...messages, {text: newMessage, sender: "me"}])
+      setNewMessage("")
+    }
+    
   }
 
     return (
       <>
         <div className="chat">
           <div className="chat-container">
-            <div className="message">bro!!!</div>
-            <div className="message">what's up</div>
-            <div className="message">call me</div>
-            <div className="message">or not... 🤣 </div>
-            <div className="message">did you deploy ???</div>
+            {messages.map((message, index) => (
+              <div className='message' key={index}>
+                {message.text}
+              </div>
+            ))}
   
-            <form className="form">
-              <input placeholder="say something nice" />
-              <button className="chat-btn" onClick={send} >Hit</button>
+            <form className="form" onSubmit={send} >
+              <input 
+                placeholder="say something nice"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)} />
+              <button type='submit' className="chat-btn">Hit</button>
             </form>
           </div>
         </div>
