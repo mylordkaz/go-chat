@@ -29,7 +29,7 @@ func (pool *Pool) Start(){
 			fmt.Println("Size of Connection Pool:", len(pool.Clients))
 			for client := range pool.Clients{
 				fmt.Println(client)
-				client.Conn.WriteJSON(Message{Type: 1, Body: "new User Joined..."})
+				client.Conn.WriteJSON(Message{Type: 1, Text: "new User Joined..."})
 			}
 			
 		// send "user disconnect" to all other clients of the pool
@@ -37,7 +37,7 @@ func (pool *Pool) Start(){
             delete(pool.Clients, client)
             fmt.Println("Size of Connection Pool: ", len(pool.Clients))
             for client := range pool.Clients {
-                client.Conn.WriteJSON(Message{Type: 1, Body: "User Disconnected..."})
+                client.Conn.WriteJSON(Message{Type: 1, Text: "User Disconnected..."})
             }
             
 		//when passed a msg loop through all client in the pool and send the msg 
