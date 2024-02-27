@@ -24,7 +24,7 @@
     padding: 0% 2% 0% 2%;
     text-align: left;
     border-radius: 15px;
-    background-color: #0b0b0bb2;
+    /* background-color: #0b0b0bb2; */
   }
   form {
     display: flex;
