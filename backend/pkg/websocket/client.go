@@ -1,6 +1,7 @@
 package websocket
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -16,7 +17,9 @@ type Client struct {
 
 type Message struct {
 	Type int   		`json:"type"`
-	Body string 	`json:"body"`
+	Text string 	`json:"text"`
+	Sender string 	`json:"sender"`
+
 }
 
 // read method constently listen for new message coming through that connection
@@ -32,8 +35,20 @@ func (c *Client) Read() {
 			log.Println(err)
 			return
 		}
-		message := Message{Type: messageType, Body: string(p)}
-		c.Pool.Broadcast <- message
-		fmt.Println("Message Received: %+V\n", message)
+		// message := Message{Type: messageType, Body: string(p)}
+		// c.Pool.Broadcast <- message
+		// fmt.Println("Message Received: %+v\n", message)
+		var receivedMessage Message
+		err = json.Unmarshal(p, &receivedMessage)
+		if err != nil {
+			log.Println("Error decoding message:", err)
+			continue
+		}
+
+		// Assuming 'Type' is set appropriately in the client's message
+		receivedMessage.Type = messageType
+
+		c.Pool.Broadcast <- receivedMessage
+		fmt.Printf("Message Received: %+v\n", receivedMessage)
 	}
 }
