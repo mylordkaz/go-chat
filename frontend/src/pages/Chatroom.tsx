@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { connect, sendMsg } from "../api";
 import { useLocation } from 'react-router-dom';
 
+ 
+
 
 interface Message {
+  type: number
   text: string
   sender: string
-}
+  
+  }
+
 
 
 export default function Chatroom() {
@@ -17,25 +22,37 @@ export default function Chatroom() {
   const location = useLocation()
   const user = new URLSearchParams(location.search).get("username") || "guest"
 
+  
+
 
 
   useEffect(() => {
-    connect()
+    const handleNewMessage = (event: MessageEvent) => {
+       const receivedMessage: Message = JSON.parse(event.data);
+      setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+      
+    };
+
+    connect(handleNewMessage);
+
     
 
     return () => {}
   }, [])
-  
+ 
 
   const send = (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (newMessage.trim() !== ""){
-      sendMsg(newMessage)
-      setMessages([...messages, {text: newMessage, sender: user}])
-      setNewMessage("")
+    // if (newMessage.trim() !== "" && sendMessage){
+    //   sendMessage(JSON.stringify({ text: newMessage, sender: user }))
+    //   setMessages([...messages, {data: newMessage}])
+    //   setNewMessage("")
+    // }
+    if (newMessage.trim() !== "") {
+      sendMsg(JSON.stringify({ type: 1, text: newMessage, sender: user }));
+      setNewMessage("");
     }
-    
   }
 
     return (
@@ -56,7 +73,7 @@ export default function Chatroom() {
                 placeholder="say something nice"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)} />
-              <button type='submit' className="chat-btn">Hit</button>
+              <button type='submit' className="chat-btn">send</button>
             </form>
           </div>
         </div>
