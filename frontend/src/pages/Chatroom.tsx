@@ -60,9 +60,9 @@ export default function Chatroom() {
         <div className="chat">
           <div className="chat-container">
             {messages.map((message, index) => (
-              <div>
+              <div key={index} className={message.sender === user ? 'sent' : 'received'} >
                 <strong>{message.sender}</strong>
-                <div className='message' key={index}>
+                <div className='message'>
                 {message.text}
                 </div>
               </div>

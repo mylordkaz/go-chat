@@ -67,3 +67,18 @@
     width: fit-content;
     padding: 5px;
   }
+  .sent{
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .received{
+    align-self: flex-start;
+  }
+  .received .message{
+    background-color: #7c42d9;
+  }
+  strong{
+    font-size: 12px;
+  }
