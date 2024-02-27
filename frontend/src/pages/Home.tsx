@@ -11,6 +11,7 @@ export default function Home() {
 
     return (
       <div className="home">
+        <header><h1>Go-chat</h1></header>
         <div className="card">
           <h1>Welcome!</h1>
           <div className="start">

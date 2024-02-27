@@ -13,6 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+header{
+  position: absolute;
+  top: 0;
+  left: 25px;
+  color: #006eff;
+  font-family: "Kalam";
+  font-size: 26px;
+ 
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;

@@ -58,6 +58,7 @@ export default function Chatroom() {
     return (
       <>
         <div className="chat">
+          <header><h1>Go-chat</h1></header>
           <div className="chat-container">
             {messages.map((message, index) => (
               <div key={index} className={message.sender === user ? 'sent' : 'received'} >
